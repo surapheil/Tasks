@@ -1,0 +1,147 @@
+@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+.packer{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(6,1fr);
+    grid-template-areas: 
+    'side head head head head'
+    'side main main main main'
+    'side main main main main'
+    'side main main main main'
+    'side main main main main'
+    'footer footer footer footer footer';
+    height: 100vh;
+    
+}
+
+.top{
+    grid-area: head;
+}
+
+.leftSide{
+    grid-area: side;
+}
+
+.main{
+    grid-area: main;
+    display: flex;
+}
+
+.footer{
+    grid-area: footer;
+}
+
+.opexPic{
+    height: 20px;
+    width: 20px;
+}
+
+.leftOne{
+    display: flex;
+    gap: 0.7em;
+    align-items: center;
+    justify-content: last baseline;
+}
+
+.opex{
+    padding-top: 1.5px;
+}
+
+.team{
+    list-style: none;
+}
+
+.container{
+  width: 50em;
+  display: grid;
+  border: 1px solid grey;
+}
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .3em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .3em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th{
+  text-align: left;
+}
+.rwd-table td{
+  text-align: center;
+}
+.rwd-table td:first-child{
+  text-align: left;
+}  
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+}
+
+.rwd-table {
+  background: #34495E;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 0.2em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}

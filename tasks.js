@@ -13,7 +13,7 @@ targets = [
 ]
 let listed = []
 //container for storing the tasks
-const container = document.querySelector('.container');
+const tasks = document.querySelector('.tasks');
 let k=1
 
 for (let i=0; i<=targets.length-1;i++){
@@ -22,7 +22,7 @@ for (let i=0; i<=targets.length-1;i++){
     subContainer.classList = `liContainer${k}`
     k++
     let ul = document.createElement('ul');
-    container.appendChild(subContainer);
+    tasks.appendChild(subContainer);
     subContainer.appendChild(ul);
     for (let val in values){
         let set = values[val];
@@ -31,4 +31,4 @@ for (let i=0; i<=targets.length-1;i++){
         ul.appendChild(li);
     }
 }
-console.log(container);
+console.log(tasks);
