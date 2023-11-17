@@ -1,15 +1,22 @@
 @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+body{
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+}
 .packer{
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(6,1fr);
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(8,1fr);
     grid-template-areas: 
-    'side head head head head'
-    'side main main main main'
-    'side main main main main'
-    'side main main main main'
-    'side main main main main'
-    'footer footer footer footer footer';
+    'side head head head head head'
+    'side main main main main main'
+    'side main main main main main'
+    'side main main main main main'
+    'side main main main main main'
+    'side main main main main main'
+    'side main main main main main'
+    'footer footer footer footer footer footer';
     height: 100vh;
     
 }
@@ -52,9 +59,12 @@
 }
 
 .container{
-  width: 50em;
+  width: 70em;
   display: grid;
   border: 1px solid grey;
+  grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+  grid-template-rows: repeat(2,auto-fit);
+  grid-column-gap: 1em;
 }
 
 .rwd-table {
@@ -130,6 +140,7 @@ h1 {
   color: #fff;
   border-radius: .4em;
   overflow: hidden;
+  margin-bottom: 4px;
 }
 .rwd-table tr {
   border-color: #46637f;
@@ -144,4 +155,11 @@ h1 {
 }
 .rwd-table th, .rwd-table td:before {
   color: #dd5;
+}
+
+
+h3{
+  height: 1em;
+  padding: 2px 2px;
+  margin: 4px 4px;
 }
