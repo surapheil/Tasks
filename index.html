@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="main">
-            <div class="container" id="">
-                <div class="firstData">
+            <div class="container" id="container">
+                <!-- <div class="firstData">
                     <h3>Week-46</h3>
                     <table class="rwd-table">
                         <th>Failure Name</th>
@@ -112,7 +112,7 @@
                             </tr>
                         </tbody>
                     </table>   
-                </div>
+                </div> -->
             </div>
             <div class="rightMain">
                 <div class="tasks">
@@ -127,6 +127,26 @@
             footer...
         </div>
     </div>
+    <div class="formContainer">
+        <form class="form" id="sheetDbForm" action="https://script.google.com/macros/s/AKfycbzoggBXUsC-U9W8GTfjf1h4L_KqBFdT2up3sOYBGsYHhFOXwKfpGZa98Is9giRW9_43/exec" method="POST">
+            <div class="inputBox">
+                <input type="text" name="task" required="required" id="task">
+                <span>Task</span>  
+            </div>
+            <div class="inputBox">
+                <input type="text" name="department" required="required" id="department">
+                <span>Department</span>  
+            </div>
+            <div class="inputBox">
+                <input type="date" required="required" name="duedate" id="dueDate">
+                <span class="hide">Due date</span>  
+            </div> 
+            <div class="btn">
+                <button type="submit" class="button">Submit</button>
+            </div> 
+        </form>
+    </div>
+    
     <script src="https://sheetdb.io/handlebars.js"></script>
 </body>
 </html>

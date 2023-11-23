@@ -3,6 +3,7 @@ body{
   padding-left: 0;
   padding-right: 0;
   margin: 0;
+  width: 95vw;
 }
 .packer{
     display: grid;
@@ -17,8 +18,7 @@ body{
     'side main main main main main'
     'side main main main main main'
     'footer footer footer footer footer footer';
-    height: 100vh;
-    
+    height: 100vh; 
 }
 
 .top{
@@ -59,7 +59,7 @@ body{
 }
 
 .container{
-  width: 70em;
+  width: 72em;
   display: grid;
   border: 1px solid grey;
   grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
@@ -162,4 +162,87 @@ h3{
   height: 1em;
   padding: 2px 2px;
   margin: 4px 4px;
+}
+
+.rightMain{
+  border: 1px solid blue;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: 40vh;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.inputBox{
+  position: relative;
+  width: 250px;
+}
+
+.inputBox input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0f172a;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1em;
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.inputBox span{
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  color: #0f1721;
+  text-transform: capitalize;
+  font-size: 1em;
+  font-weight: 610;
+  transition: 0.5s;
+}
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span{
+  color: #1d4ed8;
+  transform: translateX(10px) translateY(-8px);
+  font-size: 0.65em;
+  padding: 0px 8px;
+  background-color: #fff;
+  letter-spacing: 0.2em;
+}
+
+.inputBox input:valid,
+.inputBox input:focus{
+  border: 1.5px solid #1d4ed8;
+}
+
+.btn{
+  width: 250px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.btn button{
+  padding: 8px;
+  width: 50%;
+  font-size: 1.1em;
+  font-weight: 600;
+  border: 1px solid #0f172a;
+  border-radius: 5px;
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+input:focus ~ .hide{
+  visibility: visible;
 }
