@@ -1,37 +1,37 @@
-//target to store tasks
-targets = [
-            {
-                task:'importing doserode and Clutch',
-                department:'Technique',
-                dueDate:'05/11/2023'
-            },
-            {
-                task:'importing Cleaning machine spareparts',
-                department:'technique',
-                dueDate:'06/11/2023'
-            }
-]
-let listed = []
-//container for storing the tasks
-const tasks = document.querySelector('.tasks');
-let k=1
+// //target to store tasks
+// targets = [
+//             {
+//                 task:'importing doserode and Clutch',
+//                 department:'Technique',
+//                 dueDate:'05/11/2023'
+//             },
+//             {
+//                 task:'importing Cleaning machine spareparts',
+//                 department:'technique',
+//                 dueDate:'06/11/2023'
+//             }
+// ]
+// let listed = []
+// //container for storing the tasks
+// const tasks = document.querySelector('.tasks');
+// let k=1
 
-for (let i=0; i<=targets.length-1;i++){
-    let values = targets[i];
-    let subContainer = document.createElement('div');
-    subContainer.classList = `liContainer${k}`
-    k++
-    let ul = document.createElement('ul');
-    tasks.appendChild(subContainer);
-    subContainer.appendChild(ul);
-    for (let val in values){
-        let set = values[val];
-        let li = document.createElement('li');
-        li.innerHTML = set;
-        ul.appendChild(li);
-    }
-}
-console.log(tasks);
+// for (let i=0; i<=targets.length-1;i++){
+//     let values = targets[i];
+//     let subContainer = document.createElement('div');
+//     subContainer.classList = `liContainer${k}`
+//     k++
+//     let ul = document.createElement('ul');
+//     tasks.appendChild(subContainer);
+//     subContainer.appendChild(ul);
+//     for (let val in values){
+//         let set = values[val];
+//         let li = document.createElement('li');
+//         li.innerHTML = set;
+//         ul.appendChild(li);
+//     }
+// }
+// console.log(tasks);
 
 
 const form = document.getElementById('sheetDbForm');
@@ -49,10 +49,46 @@ form.addEventListener("submit", e => {
   form.reset();
 });
 
+//data from the formdata sheet
+const parameter = {
+  limit:100,
+  apiKey: "jaz77Itn89EUTuq096fw_s6yynI4g8DJBQumEBgmN0ttjughI-rUVaIIwsyVlw",
+  spreadsheetId: "1QVtTbCz_7911dG_Xugp9a9sXGZgqW8rib_X6wPA7KlM"
+};
+const urll = new URL("https://api.sheetson.com/v2/sheets/from-form");
 
+Object.keys(parameter).forEach((key) => urll.searchParams.append(key, encodeURIComponent(parameter[key])));
+
+fetch(urll)
+.then((response) => response.json())
+.then((result) => {
+  console.log("Fetched Data:", result);
+  displayDataInList(result.results);
+})
+
+function displayDataInList(data) {
+  // Assuming there is an HTML element with the id "dataList" where you want to display the data
+  const dataListElement = document.getElementById("tasks");
+
+  // Create an unordered list element
+  const ul = document.createElement("ul");
+
+  // Iterate through the data and create list items
+  data.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = JSON.stringify(item); // You can customize this based on your data structure
+    ul.appendChild(li);
+  });
+
+  // Append the unordered list to the dataListElement
+  dataListElement.appendChild(ul);
+}
+
+
+//data from the majordowntime(tohtml) sheet
 const params = {
-    limit:100,
-    apiKey: "5NMubZFzK7dgCWXPYAMQhXwvBlwNXU8nytnPuvvY9Y1mpq6Nlgcmedd9vQY",
+    limit:150,
+    apiKey: "jaz77Itn89EUTuq096fw_s6yynI4g8DJBQumEBgmN0ttjughI-rUVaIIwsyVlw",
     spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
   };
   const url = new URL("https://api.sheetson.com/v2/sheets/table");
@@ -62,7 +98,7 @@ const params = {
   fetch(url)
   .then((response) => response.json())
   .then((result) => {
-    console.log("Fetched Data:", result);
+    //console.log("Fetched Data:", result);
 
     if (result && result.results && result.results.length > 0) {
       displayDataByWeek(result.results);
@@ -92,13 +128,16 @@ const params = {
       const filteredHeaders = headers.filter(header => header.toLowerCase() !== 'week' && header.toLowerCase() !== 'rowindex');
   
       // Create table header row
-      //const headerRow = document.createElement("tr");
+      const contain = document.createElement('div');
+      const headerRow = document.createElement("h3");
+      headerRow.textContent = "week " + weekNumber;
       filteredHeaders.forEach(header => {
         const th = document.createElement("th");
         th.textContent = header;
         table.appendChild(th);
       });
-      //table.appendChild(headerRow);
+      contain.appendChild(headerRow);
+      contain.appendChild(table);
   
       // Create table rows for the current week
       groupedData[weekNumber].forEach((rowData) => {
@@ -110,10 +149,10 @@ const params = {
         });
         table.appendChild(dataRow);
       });
-      console.log(table);
+     //console.log(contain);
   
       // Append the table to the container
-      tablesContainer.appendChild(table);
+      tablesContainer.appendChild(contain);
     });
   }
   
