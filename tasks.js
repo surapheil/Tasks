@@ -70,18 +70,27 @@ function displayDataInList(data) {
   // Assuming there is an HTML element with the id "dataList" where you want to display the data
   const dataListElement = document.getElementById("tasks");
 
-  // Create an unordered list element
-  const ul = document.createElement("ul");
-
   // Iterate through the data and create list items
   data.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = JSON.stringify(item); // You can customize this based on your data structure
-    ul.appendChild(li);
+    const lists = document.createElement('div');
+    lists.classList.add('un');
+    //const ul = document.createElement('ul');
+    //ul.classList.add('un');
+    //lists.appendChild(ul);
+    Object.entries(item).forEach(([key,value])=>{
+      if (key.toLowerCase() !== "rowindex"){
+        const li = document.createElement("div");
+        li.textContent = value; // You can customize this based on your data structure
+        lists.appendChild(li);
+      }
+      
+    });
+    // Append the unordered list to the dataListElement
+       dataListElement.appendChild(lists); 
   });
 
-  // Append the unordered list to the dataListElement
-  dataListElement.appendChild(ul);
+  
+  console.log(dataListElement);
 }
 
 
@@ -173,6 +182,7 @@ const params = {
       // Adding data to the corresponding week's array
       groupedData[weekNumber].push(item);
     });
-  
+    console.log(groupedData);
     return groupedData;
+    
   }

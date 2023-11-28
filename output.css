@@ -168,6 +168,7 @@ h3{
 
 .rightMain{
   border: 1px solid blue;
+  width: 20em;
 }
 
 .form{
@@ -247,4 +248,38 @@ h3{
 
 input:focus ~ .hide{
   visibility: visible;
+}
+
+.tasks{
+  height: 25em;
+  overflow-y: scroll;
+}
+
+.list{
+
+
+}
+
+.un{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  align-items: center;
+  font-weight: 700;
+  background-color: #082f49;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.6em;
+}
+
+.un div{
+  color: #f59e0b;
+}
+.un div:first-child{
+  color: #f8fafc;
+  padding-top: 3px;
+}
+
+.un div:last-child{
+  color: #7c3aed;
 }
