@@ -251,7 +251,7 @@ input:focus ~ .hide{
 }
 
 .tasks{
-  height: 25em;
+  height: 28em;
   overflow-y: scroll;
 }
 
