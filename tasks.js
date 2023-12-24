@@ -32,24 +32,59 @@ fetch(link)
 
 function getDataFromExcel(data){
   const dataToBtm = document.querySelector('.btm');
-  const dataToWeek = document.querySelector('.weekkk');
   const dataToOapu = document.querySelector('.oapu');
   console.log(data);
 
   data.forEach((item) => {
-    const lists = document.createElement('div');
-    lists.classList.add('un');
+    const cont = document.createElement('div');
+    cont.classList.add('tcon');
+    const coap = document.createElement('div');
+    coap.classList.add('coap');
+    const couo = document.createElement('div');
+    couo.classList.add('couo');
     Object.entries(item).forEach(([key,value])=>{
-      if (key.toLowerCase() !== "rowindex"){
-        const li = document.createElement("div");
-        li.textContent = value; // You can customize this based on your data structure
-        lists.appendChild(li);
+      
+      if (key.toLowerCase() === "week"){
+        const dataToWeek = document.createElement('div');
+        dataToWeek.classList.add('weekkk');
+        dataToWeek.textContent = value; // You can customize this based on your data structure
+        cont.appendChild(dataToWeek);
+      }
+
+      else if(key.toLowerCase()==='oee'){
+        const oee = document.createElement('div');
+        oee.classList.add('oee');
+        oee.textContent = `OEE:${value}`;
+        couo.appendChild(oee);
+      }
+
+      else if(key.toLowerCase()==='availability'){
+        const availability = document.createElement('div');
+        availability.classList.add('ava');
+        availability.textContent = `AVA:${value}`;
+        coap.appendChild(availability);
+      }
+
+      else if(key.toLowerCase()==='performance'){
+        const per = document.createElement('div');
+        per.classList.add('per');
+        per.textContent = `PER:${value}`;
+        coap.appendChild(per);
+      }
+
+      else if(key.toLowerCase()==='udt'){
+        const udt = document.createElement('div');
+        udt.classList.add('udt');
+        udt.textContent = `UDT:${value}`;
+        couo.appendChild(udt);
       }
       
     });
-
-
+      cont.appendChild(coap);
+      cont.appendChild(couo);
+      dataToBtm.appendChild(cont);
 });
+console.log(dataToBtm);
 }
 
 
@@ -122,15 +157,14 @@ const params = {
   function displayDataByWeek(data) {
     // Container to hold tables for each week
     const tablesContainer = document.getElementById("container");
-  
     // Group data by week
     const groupedData = groupDataByWeek(data);
-  
+    console.log(groupedData);
     // Create a table for each week
     Object.keys(groupedData).forEach((weekNumber) => {
       const table = document.createElement("table");
       table.classList.add('rwd-table');
-  
+      
       // Extracting headers from the first row of data for the current week
       const headers = Object.keys(groupedData[weekNumber][0]);
   
@@ -140,6 +174,7 @@ const params = {
       // Create table header row
       const contain = document.createElement('div');
       const headerRow = document.createElement("h3");
+      console.log(weekNumber);
       headerRow.textContent = "week " + weekNumber;
       filteredHeaders.forEach(header => {
         const th = document.createElement("th");
@@ -169,7 +204,7 @@ const params = {
   function groupDataByWeek(data) {
     // Assuming the data has a 'week' field
     const groupedData = {};
-  
+     console.log(data);
     // Iterate through each item in the data array
     data.forEach((item) => {
       // Extract the week number from the current item
@@ -183,7 +218,21 @@ const params = {
       // Adding data to the corresponding week's array
       groupedData[weekNumber].push(item);
     });
-    console.log(groupedData);
-    return groupedData;
     
+    return reverseObjectKeys(groupedData);
+    
+  }
+
+
+
+  function reverseObjectKeys(originalObject) {
+    const reversedObject = {};
+  
+    Object.keys(originalObject)
+      .sort((a, b) => Number(b) - Number(a))
+      .forEach((key) => {
+        reversedObject[key] = originalObject[key];
+      });
+  
+    return reversedObject;
   }
