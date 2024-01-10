@@ -1,11 +1,11 @@
 @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
 body{
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0;
-  width: 95vw;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100vw;
   background-color: white;
 }
+
 .packer{
     display: grid;
     grid-template-columns: repeat(6,1fr);
@@ -20,10 +20,22 @@ body{
     'side main main main main main'
     'footer footer footer footer footer footer';
     height: 100vh; 
+   
 }
 
 .top{
     grid-area: head;
+    height: 12em;
+}
+
+.tcon{
+  border: 2px solid #0284c7;
+  padding: 0.8em;
+  margin: 0.8em;
+  border-radius: 20px;
+  background-color: #0284c7;
+  color: white;
+  font-size: 1.2em;
 }
 
 .leftSide{
@@ -31,7 +43,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 2em;
-    margin-top: 1em;
+    background-color: #0284c7;
+    color: white;
 }
 
 .main{
@@ -44,8 +57,8 @@ body{
 }
 
 .opexPic{
-    height: 20px;
-    width: 20px;
+    height: 2.8em;
+    width: 2.8em;
 }
 
 .leftOne{
@@ -53,6 +66,8 @@ body{
     gap: 0.7em;
     align-items: center;
     justify-content: last baseline;
+    margin-top: 1em;
+    margin-left: 1.3em;
 }
 
 
@@ -72,10 +87,12 @@ body{
 .sidePics{
   height: 2.3em;
   width: 2.3em;
+  color: white;
 }
 
 .opex{
     padding-top: 1.5px;
+    font-size: 2.3em;
 }
 
 .team{
@@ -86,6 +103,7 @@ body{
   font-size: 1.4em;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-weight: 700;
+  
 }
 
 .container{
@@ -284,11 +302,6 @@ input:focus ~ .hide{
   overflow-y: scroll;
 }
 
-.list{
-
-
-}
-
 .un{
   display: flex;
   flex-direction: column;
@@ -317,15 +330,21 @@ input:focus ~ .hide{
 .btm{
   display: flex;
   align-items: center;
-  height: 5em;
+  height: 8em;
   margin-top: 1em;
-  overflow-x: scroll;
+ 
   
 }
 
 .tcon{
   display: flex;
   gap: 10px;
+}
+
+.weekkk{
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid #082f49;
 }
 
 

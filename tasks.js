@@ -12,10 +12,10 @@ form.addEventListener("submit", e => {
   form.reset();
 });
 
-
+//data from the OEE,Availability,Performance and Quality
 const toau = {
   limit:100,
-  apiKey: "5NMubZFzK7dgCWXPYAMQhXwvBlwNXU8nytnPuvvY9Y1mpq6Nlgcmedd9vQY",
+  apiKey: "S_mPom9nXZUKDTUb5uQJ42aWy6M6hYlieD4FvpEfKEeseOgjOAG95qsw38o",
   spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
 };
 const link = new URL("https://api.sheetson.com/v2/sheets/WAPQO");
@@ -26,15 +26,12 @@ fetch(link)
 .then((response) => response.json())
 .then((result) => {
   console.log("Fetched Data:", result);
+  console.log(result.results);
   getDataFromExcel(result.results);
 })
 
-
 function getDataFromExcel(data){
   const dataToBtm = document.querySelector('.btm');
-  const dataToOapu = document.querySelector('.oapu');
-  console.log(data);
-
   data.forEach((item) => {
     const cont = document.createElement('div');
     cont.classList.add('tcon');
@@ -42,51 +39,52 @@ function getDataFromExcel(data){
     coap.classList.add('coap');
     const couo = document.createElement('div');
     couo.classList.add('couo');
-    Object.entries(item).forEach(([key,value])=>{
-      
-      if (key.toLowerCase() === "week"){
+    let weekValues = ["1/24", "2/24", "52", "51"]; // Add the week values you want to filter here
+
+    // Extract week value
+    const weekValue = item.Week;
+
+    if (weekValues.includes(weekValue)) {
         const dataToWeek = document.createElement('div');
         dataToWeek.classList.add('weekkk');
-        dataToWeek.textContent = value; // You can customize this based on your data structure
+        dataToWeek.textContent = `${weekValue}`;
         cont.appendChild(dataToWeek);
-      }
 
-      else if(key.toLowerCase()==='oee'){
-        const oee = document.createElement('div');
-        oee.classList.add('oee');
-        oee.textContent = `OEE:${value}`;
-        couo.appendChild(oee);
-      }
+        if ('OEE' in item) {
+            const oee = document.createElement('div');
+            oee.classList.add('oee');
+            oee.textContent = `OEE: ${item.OEE}`;
+            couo.appendChild(oee);
+        }
 
-      else if(key.toLowerCase()==='availability'){
-        const availability = document.createElement('div');
-        availability.classList.add('ava');
-        availability.textContent = `AVA:${value}`;
-        coap.appendChild(availability);
-      }
+        if ('Availability' in item) {
+            const availability = document.createElement('div');
+            availability.classList.add('ava');
+            availability.textContent = `AVA: ${item.Availability}`;
+            coap.appendChild(availability);
+        }
 
-      else if(key.toLowerCase()==='performance'){
-        const per = document.createElement('div');
-        per.classList.add('per');
-        per.textContent = `PER:${value}`;
-        coap.appendChild(per);
-      }
+        if ('Performance' in item) {
+            const per = document.createElement('div');
+            per.classList.add('per');
+            per.textContent = `PER: ${item.Performance}`;
+            coap.appendChild(per);
+        }
 
-      else if(key.toLowerCase()==='udt'){
-        const udt = document.createElement('div');
-        udt.classList.add('udt');
-        udt.textContent = `UDT:${value}`;
-        couo.appendChild(udt);
-      }
-      
-    });
-      cont.appendChild(coap);
-      cont.appendChild(couo);
-      dataToBtm.appendChild(cont);
+        if ('UDT' in item) {
+            const udt = document.createElement('div');
+            udt.classList.add('udt');
+            udt.textContent = `UDT: ${item.UDT}`;
+            couo.appendChild(udt);
+        }
+
+        cont.appendChild(coap);
+        cont.appendChild(couo);
+        dataToBtm.appendChild(cont);
+    }
 });
-console.log(dataToBtm);
+ 
 }
-
 
 
 //data from the formdata sheet
@@ -132,8 +130,8 @@ function displayDataInList(data) {
 
 //data from the majordowntime(tohtml) sheet
 const params = {
-    limit:150,
-    apiKey: "jaz77Itn89EUTuq096fw_s6yynI4g8DJBQumEBgmN0ttjughI-rUVaIIwsyVlw",
+    limit:170,
+    apiKey: "5NMubZFzK7dgCWXPYAMQhXwvBlwNXU8nytnPuvvY9Y1mpq6Nlgcmedd9vQY",
     spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
   };
   const url = new URL("https://api.sheetson.com/v2/sheets/table");
@@ -143,7 +141,7 @@ const params = {
   fetch(url)
   .then((response) => response.json())
   .then((result) => {
-    //console.log("Fetched Data:", result);
+    console.log("Fetched Data:", result.results);
 
     if (result && result.results && result.results.length > 0) {
       displayDataByWeek(result.results);
@@ -225,14 +223,14 @@ const params = {
 
 
 
-  function reverseObjectKeys(originalObject) {
-    const reversedObject = {};
-  
-    Object.keys(originalObject)
-      .sort((a, b) => Number(b) - Number(a))
-      .forEach((key) => {
-        reversedObject[key] = originalObject[key];
-      });
-  
-    return reversedObject;
-  }
+function reverseObjectKeys(originalObject) {
+  const reversedObject = {};
+
+  Object.keys(originalObject)
+    .sort((a, b) => Number(b) - Number(a))
+    .forEach((key) => {
+      reversedObject[key] = originalObject[key];
+    });
+
+  return reversedObject;
+}
