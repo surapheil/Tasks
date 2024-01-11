@@ -105,7 +105,7 @@ function getDataFromExcel(data) {
 //data from the formdata sheet
 const parameter = {
   limit:100,
-  apiKey: "jaz77Itn89EUTuq096fw_s6yynI4g8DJBQumEBgmN0ttjughI-rUVaIIwsyVlw",
+  apiKey: "KRigaOPTxu3xg6U8kWHsuEr71V8FLXrrtLmN69F0r1aMDDBJ5CVmhWmwJKN1AA",
   spreadsheetId: "1QVtTbCz_7911dG_Xugp9a9sXGZgqW8rib_X6wPA7KlM"
 };
 const urll = new URL("https://api.sheetson.com/v2/sheets/from-form");
@@ -115,7 +115,8 @@ Object.keys(parameter).forEach((key) => urll.searchParams.append(key, encodeURIC
 fetch(urll)
 .then((response) => response.json())
 .then((result) => {
-  //console.log("Fetched Data:", result);
+  console.log("Fetched Data:", result);
+
   displayDataInList(result.results);
 })
 
@@ -146,7 +147,7 @@ function displayDataInList(data) {
 //data from the majordowntime(tohtml) sheet
 const params = {
     limit:170,
-    apiKey: "5NMubZFzK7dgCWXPYAMQhXwvBlwNXU8nytnPuvvY9Y1mpq6Nlgcmedd9vQY",
+    apiKey: "VRN-YvbR7mICoYlKYJirlOBVxF10Xh-Jm1jNdHtpEwD61gTkrdeGrdd9qHY",
     spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
   };
   const url = new URL("https://api.sheetson.com/v2/sheets/table");
@@ -156,7 +157,7 @@ const params = {
   fetch(url)
   .then((response) => response.json())
   .then((result) => {
-    //console.log("Fetched Data:", result.results);
+    console.log("Fetched Data:", result.results);
 
     if (result && result.results && result.results.length > 0) {
       displayDataByWeek(result.results);

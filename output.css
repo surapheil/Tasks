@@ -350,3 +350,7 @@ input:focus ~ .hide{
   /* border: 1px solid #082f49; */
 }
 
+.linkAddress{
+  text-decoration: none;
+  color: #ddd;
+}
