@@ -89,6 +89,12 @@ body{
   align-items: center;
 }
 
+.innerSdBars:hover{
+  background-color: rgba(143, 130, 186, 255);
+  height: 3em;
+  border-radius: 5px;
+}
+
 .sidePics{
   height: 2.3em;
   width: 2.3em;
