@@ -29,13 +29,18 @@ body{
 }
 
 .tcon{
-  border: 2px solid #0284c7;
-  padding: 0.8em;
+  display: flex;
+  gap: 10px;
+  height: 3em;
+  align-items: center;
+  color: #0f172a;
+  border: 1px solid #0284c7;
+  padding: 0.8em 1em;
   margin: 0.8em;
-  border-radius: 20px;
-  background-color: #0284c7;
-  color: white;
+  border-radius: 10px;
   font-size: 1.2em;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 700;
 }
 
 .leftSide{
@@ -43,7 +48,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 2em;
-    background-color: #0284c7;
+    background-color: rgba(113, 99, 186, 255);
     color: white;
 }
 
@@ -330,21 +335,18 @@ input:focus ~ .hide{
 .btm{
   display: flex;
   align-items: center;
+  justify-content: space-around;
   height: 8em;
   margin-top: 1em;
- 
-  
-}
-
-.tcon{
-  display: flex;
-  gap: 10px;
 }
 
 .weekkk{
+  width: 27px;
+  height: 27px;
+  text-align: center;
   padding: 10px;
   border-radius: 50%;
-  border: 1px solid #082f49;
+  color: #f8fafc;
+  /* border: 1px solid #082f49; */
 }
-
 

@@ -25,66 +25,81 @@ Object.keys(toau).forEach((key) => link.searchParams.append(key, encodeURICompon
 fetch(link)
 .then((response) => response.json())
 .then((result) => {
-  console.log("Fetched Data:", result);
-  console.log(result.results);
+  //console.log("Fetched Data:", result);
+  //console.log(result.results);
   getDataFromExcel(result.results);
 })
 
-function getDataFromExcel(data){
+function getDataFromExcel(data) {
   const dataToBtm = document.querySelector('.btm');
-  data.forEach((item) => {
-    const cont = document.createElement('div');
-    cont.classList.add('tcon');
-    const coap = document.createElement('div');
-    coap.classList.add('coap');
-    const couo = document.createElement('div');
-    couo.classList.add('couo');
-    let weekValues = ["1/24", "2/24", "52", "51"]; // Add the week values you want to filter here
 
-    // Extract week value
-    const weekValue = item.Week;
+  let weekValues = {
+      "24/01": 1,
+      "24/02": 2,
+      "52": 52,
+      "51": 51
+  };
 
-    if (weekValues.includes(weekValue)) {
-        const dataToWeek = document.createElement('div');
-        dataToWeek.classList.add('weekkk');
-        dataToWeek.textContent = `${weekValue}`;
-        cont.appendChild(dataToWeek);
+  // Define arrays of background colors
+  let tconBackgroundColors = ["#fee2e2", "#f5d0fe", "#ccfbf1", "#eef2ff"];
+  let weekkkBackgroundColors = ["#701a75", "#1e40af", "#16a34a", "#f43f5e"];
 
-        if ('OEE' in item) {
-            const oee = document.createElement('div');
-            oee.classList.add('oee');
-            oee.textContent = `OEE: ${item.OEE}`;
-            couo.appendChild(oee);
-        }
+  data.forEach((item, index) => {
+      const cont = document.createElement('div');
+      cont.classList.add('tcon');
+      cont.style.backgroundColor = tconBackgroundColors[index % tconBackgroundColors.length];
 
-        if ('Availability' in item) {
-            const availability = document.createElement('div');
-            availability.classList.add('ava');
-            availability.textContent = `AVA: ${item.Availability}`;
-            coap.appendChild(availability);
-        }
+      const coap = document.createElement('div');
+      coap.classList.add('coap');
+      const couo = document.createElement('div');
+      couo.classList.add('couo');
 
-        if ('Performance' in item) {
-            const per = document.createElement('div');
-            per.classList.add('per');
-            per.textContent = `PER: ${item.Performance}`;
-            coap.appendChild(per);
-        }
+      const weekValue = item.Week;
+      const numericWeekValue = weekValues[weekValue];
 
-        if ('UDT' in item) {
-            const udt = document.createElement('div');
-            udt.classList.add('udt');
-            udt.textContent = `UDT: ${item.UDT}`;
-            couo.appendChild(udt);
-        }
+      if (numericWeekValue !== undefined) {
+          const dataToWeek = document.createElement('div');
+          dataToWeek.classList.add('weekkk');
+          dataToWeek.style.backgroundColor = weekkkBackgroundColors[index % weekkkBackgroundColors.length];
+          dataToWeek.textContent = `${numericWeekValue}`;
+          cont.appendChild(dataToWeek);
 
-        cont.appendChild(coap);
-        cont.appendChild(couo);
-        dataToBtm.appendChild(cont);
-    }
-});
- 
+          if ('OEE' in item) {
+              const oee = document.createElement('div');
+              oee.classList.add('oee');
+              oee.textContent = `OEE: ${item.OEE}`;
+              couo.appendChild(oee);
+          }
+
+          if ('Availability' in item) {
+              const availability = document.createElement('div');
+              availability.classList.add('ava');
+              availability.textContent = `AVA: ${item.Availability}`;
+              coap.appendChild(availability);
+          }
+
+          if ('Performance' in item) {
+              const per = document.createElement('div');
+              per.classList.add('per');
+              per.textContent = `PER: ${item.Performance}`;
+              coap.appendChild(per);
+          }
+
+          if ('UDT' in item) {
+              const udt = document.createElement('div');
+              udt.classList.add('udt');
+              udt.textContent = `UDT: ${item.UDT}`;
+              couo.appendChild(udt);
+          }
+
+          cont.appendChild(coap);
+          cont.appendChild(couo);
+          dataToBtm.appendChild(cont);
+      }
+  });
 }
+
+
 
 
 //data from the formdata sheet
@@ -100,7 +115,7 @@ Object.keys(parameter).forEach((key) => urll.searchParams.append(key, encodeURIC
 fetch(urll)
 .then((response) => response.json())
 .then((result) => {
-  console.log("Fetched Data:", result);
+  //console.log("Fetched Data:", result);
   displayDataInList(result.results);
 })
 
@@ -124,7 +139,7 @@ function displayDataInList(data) {
   });
 
   
-  console.log(dataListElement);
+  //console.log(dataListElement);
 }
 
 
@@ -141,7 +156,7 @@ const params = {
   fetch(url)
   .then((response) => response.json())
   .then((result) => {
-    console.log("Fetched Data:", result.results);
+    //console.log("Fetched Data:", result.results);
 
     if (result && result.results && result.results.length > 0) {
       displayDataByWeek(result.results);
@@ -157,7 +172,7 @@ const params = {
     const tablesContainer = document.getElementById("container");
     // Group data by week
     const groupedData = groupDataByWeek(data);
-    console.log(groupedData);
+ //   console.log(groupedData);
     // Create a table for each week
     Object.keys(groupedData).forEach((weekNumber) => {
       const table = document.createElement("table");
@@ -172,7 +187,7 @@ const params = {
       // Create table header row
       const contain = document.createElement('div');
       const headerRow = document.createElement("h3");
-      console.log(weekNumber);
+     // console.log(weekNumber);
       headerRow.textContent = "week " + weekNumber;
       filteredHeaders.forEach(header => {
         const th = document.createElement("th");
@@ -202,7 +217,7 @@ const params = {
   function groupDataByWeek(data) {
     // Assuming the data has a 'week' field
     const groupedData = {};
-     console.log(data);
+   //  console.log(data);
     // Iterate through each item in the data array
     data.forEach((item) => {
       // Extract the week number from the current item
