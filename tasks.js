@@ -15,7 +15,7 @@ form.addEventListener("submit", e => {
 //data from the OEE,Availability,Performance and Quality
 const toau = {
   limit:100,
-  apiKey: "S_mPom9nXZUKDTUb5uQJ42aWy6M6hYlieD4FvpEfKEeseOgjOAG95qsw38o",
+  apiKey: "_VZI0EdhhPYA_DfGWaa3FwpLLRerlRxFuuzwUS-Blv8VgICiuiXlBuFrR_hFEw",
   spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
 };
 const link = new URL("https://api.sheetson.com/v2/sheets/WAPQO");
@@ -100,12 +100,10 @@ function getDataFromExcel(data) {
 }
 
 
-
-
 //data from the formdata sheet
 const parameter = {
   limit:100,
-  apiKey: "KRigaOPTxu3xg6U8kWHsuEr71V8FLXrrtLmN69F0r1aMDDBJ5CVmhWmwJKN1AA",
+  apiKey: "S_mPom9nXZUKDTUb5uQJ42aWy6M6hYlieD4FvpEfKEeseOgjOAG95qsw38o",
   spreadsheetId: "1QVtTbCz_7911dG_Xugp9a9sXGZgqW8rib_X6wPA7KlM"
 };
 const urll = new URL("https://api.sheetson.com/v2/sheets/from-form");
@@ -147,7 +145,7 @@ function displayDataInList(data) {
 //data from the majordowntime(tohtml) sheet
 const params = {
     limit:170,
-    apiKey: "VRN-YvbR7mICoYlKYJirlOBVxF10Xh-Jm1jNdHtpEwD61gTkrdeGrdd9qHY",
+    apiKey: "KRigaOPTxu3xg6U8kWHsuEr71V8FLXrrtLmN69F0r1aMDDBJ5CVmhWmwJKN1AA",
     spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
   };
   const url = new URL("https://api.sheetson.com/v2/sheets/table");
@@ -250,3 +248,23 @@ function reverseObjectKeys(originalObject) {
 
   return reversedObject;
 }
+const footCont = document.querySelector('.footerContainer');
+function createFooter(){
+      const footer = document.createElement('footer');
+      footer.classList.add('footer');
+      const p = document.createElement('p');
+      const copyrightSymbol = '&copy;'
+      p.innerHTML = `Copyright ${copyrightSymbol} ${new Date().getFullYear()} OPEX@HEF`;
+      const a = document.createElement('a');
+      a.classList.add('githubLink');
+      a.href = "https://github.com/surapheil";
+      const githubIcon = document.createElement('img');
+      githubIcon.classList.add('githubIcon');
+      githubIcon.src = `./img/3e1fb0ef3b3c157f94db.png`;
+      a.appendChild(githubIcon);
+      footer.appendChild(p);
+      footer.appendChild(a);
+  return footer;
+}
+
+footCont.appendChild(createFooter());
