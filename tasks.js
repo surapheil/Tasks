@@ -113,7 +113,7 @@ Object.keys(parameter).forEach((key) => urll.searchParams.append(key, encodeURIC
 fetch(urll)
 .then((response) => response.json())
 .then((result) => {
-  console.log("Fetched Data:", result);
+  console.log("Fetched Data:", result.results);
 
   displayDataInList(result.results);
 })
@@ -126,7 +126,33 @@ function displayDataInList(data) {
     const lists = document.createElement('div');
     lists.classList.add('un');
     Object.entries(item).forEach(([key,value])=>{
-      if (key.toLowerCase() !== "rowindex"){
+        if (key.toLowerCase() !== "rowindex"){
+          if (key.toLowerCase() === "duedate") {
+            const ti = document.createElement('div');
+        
+            function updateTimer() {
+                future = Date.parse(value);
+                now = new Date();
+                diff = future - now;
+        
+                days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                hours = Math.floor(diff / (1000 * 60 * 60));
+                mins = Math.floor(diff / (1000 * 60));
+                secs = Math.floor(diff / 1000);
+        
+                d = days;
+                h = hours - days * 24;
+                m = mins - hours * 60;
+                s = secs - mins * 60;
+        
+                ti.innerHTML = d + ' : ' + h + ' : ' + m + ' : ' + s;
+                lists.appendChild(ti);
+            }
+        
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        
         const li = document.createElement("div");
         li.textContent = value; // You can customize this based on your data structure
         lists.appendChild(li);
@@ -248,23 +274,3 @@ function reverseObjectKeys(originalObject) {
 
   return reversedObject;
 }
-const footCont = document.querySelector('.footerContainer');
-function createFooter(){
-      const footer = document.createElement('footer');
-      footer.classList.add('footer');
-      const p = document.createElement('p');
-      const copyrightSymbol = '&copy;'
-      p.innerHTML = `Copyright ${copyrightSymbol} ${new Date().getFullYear()} OPEX@HEF`;
-      const a = document.createElement('a');
-      a.classList.add('githubLink');
-      a.href = "https://github.com/surapheil";
-      const githubIcon = document.createElement('img');
-      githubIcon.classList.add('githubIcon');
-      githubIcon.src = `./img/3e1fb0ef3b3c157f94db.png`;
-      a.appendChild(githubIcon);
-      footer.appendChild(p);
-      footer.appendChild(a);
-  return footer;
-}
-
-footCont.appendChild(createFooter());
