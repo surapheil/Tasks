@@ -374,7 +374,7 @@ input:focus ~ .hide{
   gap: 1em;
   align-items: center;
   font-weight: 700;
-  background-color: #082f49;
+  background-color: #3b82f6;
   border: 1px solid #e2e8f0;
   border-radius: 0.6em;
 }
@@ -388,7 +388,7 @@ input:focus ~ .hide{
 }
 
 .un div:last-child{
-  color: #7c3aed;
+  color: #f7fcfa;
 }
 
 
@@ -414,3 +414,25 @@ input:focus ~ .hide{
   text-decoration: none;
   color: #ddd;
 }
+
+.trending{
+  margin-top: 1em;
+  overflow-y: scroll;
+  height: 18em;
+}
+
+.meeting{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  align-items: center;
+  font-weight: 700;
+  background-color: rgba(113, 111, 186, 255);
+  border: 1px solid #e2e8f0;
+  border-radius: 0.6em;
+  color: white;
+  height: 6em;
+}
+
+
