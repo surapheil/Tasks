@@ -36,8 +36,8 @@ function getDataFromExcel(data) {
   let weekValues = {
       "24/01": 1,
       "24/02": 2,
-      "52": 52,
-      "51": 51
+      "24/03": 3,
+      "52": 52
   };
 
   // Define arrays of background colors
