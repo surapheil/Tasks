@@ -37,7 +37,7 @@ function getDataFromExcel(data) {
       "24/01": 1,
       "24/02": 2,
       "24/03": 3,
-      "52": 52
+      "24/04": 4
   };
 
   // Define arrays of background colors
