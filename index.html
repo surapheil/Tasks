@@ -9,6 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
     <script src="tasks.js" defer></script>
+    <link rel="stylesheet" href= 
+    "https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity= 
+    "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            rossorigin="anonymous"> 
+        <script src= 
+            "https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity= 
+    "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"> 
+        </script> 
+        <script src= 
+    "https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+                integrity= 
+    "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"> 
+        </script> 
+        <script src= 
+    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> 
+        </script> 
 </head>
 <body>
     <div class="packer">
@@ -65,7 +85,135 @@
             </div>
         </div>
         <div class="main">
-            <div class="container" id="container">
+            <div class="Tcontainer" id="Tcontainer">
+                <div class="container" id="container">
+
+                </div>
+                <div class="graph">
+                    <!-- The graph will be drawn here -->
+                    <center class="buttonGraph"> 
+                        <button class="btn btn-outline-success"
+                            onclick="plotcharts()"> 
+                            Plot Charts 
+                        </button> 
+                    </center> 
+                    <div class="row" style="width:100%"> 
+                        <div class="col-md-6"> 
+                            <canvas id="barchart"></canvas> 
+                        </div> 
+                        <!-- <div class="col-md-6"> 
+                            <canvas id="linechart"></canvas> 
+                        </div>  -->
+                    </div> 
+
+                    <style>
+                        .col-md-6{
+                            width: 58em;
+                            height:30em;
+                            margin: auto;
+                        }
+                        .btn-outline-success{
+                            text-align: center;
+                        }
+                    </style>
+
+
+<script type="text/javascript"> 
+	function plotcharts(){ 
+		const Unplanned = {
+			limit:100,
+			apiKey: "S_mPom9nXZUKDTUb5uQJ42aWy6M6hYlieD4FvpEfKEeseOgjOAG95qsw38o",
+			spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
+		};
+		var apiUrl = new URL("https://api.sheetson.com/v2/sheets/monthly-unplanned"); 
+		Object.keys(Unplanned).forEach((key) => apiUrl.searchParams.append(key, encodeURIComponent(Unplanned[key])));
+		var months=[]; 
+		var cost=[]; 
+		fetch(apiUrl).then(response => { 
+			return response.json(); 
+		}).then(result => { 
+			console.log(result.results);
+			for(let i =0; i <result.results.length;i++){ 
+				months.push(result.results[i]['Unplanned Downtime']); 
+				cost.push(parseInt(result.results[i]['downtime (Hrs)']));
+				// plannedD.push(result.results[i]['Planned Downtime'])
+				// selling.push(parseInt(result.results[i]['Downtime (Hrs)'])); 
+			} 
+			//For Bar chart 
+			dataset=addData('downtime (Hrs)', cost, 'green', 'black'); 
+			drawchart(dataset, months, 'bar'); 
+			
+			//For Line chart 
+			// dataset=addData('Selling Price', selling, 'transparent', 'green'); 
+			// drawchart(dataset, months, 'line'); 
+			
+		}).catch(err => { 
+			console.log(err); 
+		}); 
+
+	// 	const planned = {
+	// 		limit:100,
+	// 		apiKey: "VzWYf91IweuIeNsSVvtZCIL9XZ2xZCalrOOJu6GddxKMEE-A61B6x2PToD8",
+	// 		spreadsheetId: "14fsBRp1Mnes7CDHToV5yqvnforSt6kcJHD3JOUEemq0"
+	// 	};
+	// 	var apiUrlP = new URL("https://api.sheetson.com/v2/sheets/monthly-planned"); 
+	// 	Object.keys(planned).forEach((key) => apiUrlP.searchParams.append(key, encodeURIComponent(planned[key])));
+	// 	var plannedDT = [] 
+	// 	var dt=[]; 
+	// 	fetch(apiUrlP).then(response => { 
+	// 		return response.json(); 
+	// 	}).then(result => { 
+	// 		console.log(result.results);
+	// 		for(let i =0; i <result.results.length;i++){ 
+	// 			plannedDT.push(result.results[i]['planned downtimes']); 
+	// 			dt.push(parseInt(result.results[i]['downtime (Hrs)']));
+	// 		} 
+	// 		// //For Bar chart 
+	// 		// dataset=addData('downtime (Hrs)', cost, 'green', 'black'); 
+	// 		// drawchart(dataset, dt, 'bar'); 
+			
+	// 		//For Line chart 
+	// 		dataset=addData('downtime (Hrs)', dt, 'transparent', 'green'); 
+	// 		drawchart(dataset, plannedDT, 'line'); 
+			
+	// 	}).catch(err => { 
+	// 		console.log(err); 
+	// 	}); 		
+	 } 
+
+
+    function addData(title, Data, bgcolor, bordercolor){ 
+		return [{ 
+			label: title, 
+			data: Data, 
+			backgroundColor: bgcolor, 
+			borderColor: bordercolor, 
+			borderWidth: 1.5 
+		}]; 
+	} 
+	
+	function drawchart(dataset, Labels, type){ 
+		const ctx = document.getElementById(type+'chart').getContext('2d'); 
+		const myChart = new Chart(ctx, { 
+			type: type, 
+			data: { 
+				labels: Labels, 
+				datasets: dataset 
+			}, 
+			options: { 
+				scales: { 
+					yAxes: [{ 
+						ticks: { 
+							beginAtZero: true
+						} 
+					}] 
+				} 
+			} 
+		}); 
+	} 
+    </script>
+                    
+                </div>
             </div>
             <div class="rightMain">
                 <div class="tasks" id="tasks">

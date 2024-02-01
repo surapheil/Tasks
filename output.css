@@ -104,11 +104,13 @@ body{
     gap: 2em;
     background-color: rgba(113, 99, 186, 255);
     color: white;
+    height: 62em;
 }
 
 .main{
     grid-area: main;
     display: flex;
+    height: 55em;
 }
 
 .opexPic{
@@ -434,3 +436,15 @@ input:focus ~ .hide{
 }
 
 
+.graph{
+  display: flex;
+}
+
+.btn-outline-success{
+  transform: rotate(-90deg);
+  transform-origin: bottom;
+  white-space: nowrap;
+  width: 5.7em;
+  margin-top: 1.5em;
+  
+}

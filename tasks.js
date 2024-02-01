@@ -26,7 +26,7 @@ fetch(link)
 .then((response) => response.json())
 .then((result) => {
   //console.log("Fetched Data:", result);
-  //console.log(result.results);
+  console.log(result.results);
   getDataFromExcel(result.results);
 })
 
