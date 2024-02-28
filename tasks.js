@@ -34,10 +34,10 @@ function getDataFromExcel(data) {
   const dataToBtm = document.querySelector('.btm');
 
   let weekValues = {
-      "24/02": 2,
-      "24/03": 3,
-      "24/04": 4,
-      "24/05": 5
+      "24/06": 6,
+      "24/07": 7,
+      "24/08": 8,
+      "24/09": 9
   };
 
   // Define arrays of background colors
