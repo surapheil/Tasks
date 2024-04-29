@@ -34,10 +34,10 @@ function getDataFromExcel(data) {
   const dataToBtm = document.querySelector('.btm');
 
   let weekValues = {
-      "24/06": 6,
-      "24/07": 7,
-      "24/08": 8,
-      "24/09": 9
+      "24/14": 14,
+      "24/15": 15,
+      "24/16": 16,
+      "24/17": 17
   };
 
   // Define arrays of background colors
@@ -45,6 +45,7 @@ function getDataFromExcel(data) {
   let weekkkBackgroundColors = ["#701a75", "#1e40af", "#16a34a", "#f43f5e"];
 
   data.forEach((item, index) => {
+    console.log(item);
       const cont = document.createElement('div');
       cont.classList.add('tcon');
       cont.style.backgroundColor = tconBackgroundColors[index % tconBackgroundColors.length];
@@ -85,10 +86,10 @@ function getDataFromExcel(data) {
               coap.appendChild(per);
           }
 
-          if ('UDT' in item) {
+          if ('PL' in item) {
               const udt = document.createElement('div');
               udt.classList.add('udt');
-              udt.textContent = `UDT: ${item.UDT}`;
+              udt.textContent = `PL: ${item.PL}`;
               couo.appendChild(udt);
           }
 
